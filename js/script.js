@@ -13,7 +13,7 @@ const currOneHidden = document.querySelector('#currOneHidden')
 const currTwoHidden = document.querySelector('#currTwoHidden')
 const currOneValue = document.querySelector('#currOneValue')
 const currTwoValue = document.querySelector('#currTwoValue')
-const convert = document.querySelector('.convert')
+const convert = document.querySelector('#convert')
 const currencyList = document.querySelector('#currencyList')
 const currencyListTwo = document.querySelector('#currencyListTwo')
 const currencyListDiv = document.querySelector('#currList')
@@ -135,33 +135,38 @@ const searchInList = (e, listDiv) => {
     });
 }
 
-/** TO RETHINK
+// Handling arrows + enter in currency list. 
 const handleKeyPress = (e, listDiv, inputElement, hiddenInput) => {
-    const visibleItems = Array.from(listDiv.children).filter(item => item.style.display !== 'none');
-    let currentIndex = visibleItems.findIndex(item => item.classList.contains('active'));
-
-    console.log(e)
-
+    const visibleItems = Array.from(listDiv.children).filter(item => item.style.display !== 'none')
+    let currentIndex = visibleItems.findIndex(item => item.classList.contains('active'))
+    const itemHeight = visibleItems.length > 0 ? visibleItems[0].offsetHeight : 0
+    let scrollTo
     switch (e.keyCode) {
         case KEY_ENTER:
             if (currentIndex !== -1) {
-                chooseCurrency({ target: visibleItems[currentIndex] }, listDiv, inputElement, hiddenInput);
+                chooseCurrency({ target: visibleItems[currentIndex] }, listDiv.parentNode, inputElement, hiddenInput)
             }
-            break;
+            break
         case KEY_ARROW_UP:
-            currentIndex = currentIndex > 0 ? currentIndex - 1 : visibleItems.length - 1;
-            break;
-        case KEY_ARROW_DOWN:
-            currentIndex = currentIndex < visibleItems.length - 1 ? currentIndex + 1 : 0;
-            break;
-    }
+            currentIndex = currentIndex > 0 ? currentIndex - 1 : visibleItems.length - 1
 
-    visibleItems.forEach(item => item.classList.remove('active'));
-    if (currentIndex !== -1) {
-        visibleItems[currentIndex].classList.add('active');
+            // Scrolling to currentIndex after every press
+            scrollTo = currentIndex * itemHeight
+            listDiv.parentNode.scrollTop = scrollTo
+            break
+        case KEY_ARROW_DOWN:
+            currentIndex = currentIndex < visibleItems.length - 1 ? currentIndex + 1 : 0
+            
+            scrollTo = currentIndex * itemHeight
+            listDiv.parentNode.scrollTop = scrollTo
+            break
     }
-};
-*/
+    visibleItems.forEach(item => item.classList.remove('active'))
+    if (currentIndex !== -1) {
+        visibleItems[currentIndex].classList.add('active')
+    }
+}
+
 const getRates = () => {
     // Inputs are hidden, but check just in case
     if(!isCurrencySymbol(currTwoHidden.value)) return
@@ -180,7 +185,10 @@ const getRates = () => {
             currTwoValue.value = Math.round(exchange * currOneValue.value * 100)/100
             errorInfo.textContent = ''
         })
-        .catch(() => (errorInfo.textContent = 'Wystąpił błąd.'))
+        .catch(error => {
+            console.error('Błąd API:', error)
+            errorInfo.textContent = 'Wystąpił błąd.'
+        })
 }
 
 // Working after pressing enter while in first currency input
@@ -196,8 +204,9 @@ currTwo.addEventListener('focus', () => showCurrencyList(currencyListTwoDiv, cur
 currOne.addEventListener('blur', () => hideCurrencyList(currencyListDiv))
 currTwo.addEventListener('blur', () => hideCurrencyList(currencyListTwoDiv))
 currOne.addEventListener('input', (e) => searchInList(e, currencyList))
-//currOne.addEventListener('keyup', (e) => handleKeyPress(e, currencyList, currOne, currOneHidden))
 currTwo.addEventListener('input', (e) => searchInList(e, currencyListTwo))
+currOne.addEventListener('keyup', (e) => handleKeyPress(e, currencyList, currOne, currOneHidden))
+currTwo.addEventListener('keyup', (e) => handleKeyPress(e, currencyListTwo, currTwo, currTwoHidden))
 currencyList.addEventListener('click', (e) => chooseCurrency(e, currencyListDiv, currOne, currOneHidden))
 currencyListTwo.addEventListener('click', (e) => chooseCurrency(e, currencyListTwoDiv, currTwo, currTwoHidden))
 currOneValue.addEventListener('keyup', enterCheck)

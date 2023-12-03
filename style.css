@@ -1,17 +1,123 @@
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+#topSlide {
+    min-height: 45vh;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: darkblue;
+    background-image: url('img/bg.jpg');
+    background-size: cover;
+    background-position: center center;
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+#mainBox {
+    margin: -10vh auto 0 auto;
+    background-color: #fff;
+    width: 45%;
+    padding: 75px;
+    border: 1px solid #00509d;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+h1 {
+    margin: 0;
+    padding-top: 10vh;
+    font-size: 4em;
+    text-align: center;
+    color: #fff;
+}
+
+input {
+    border: 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
+    border: 1px solid #00509d;
+    box-sizing: border-box;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #fdc500;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    
+}
+
+#baseCurrency, #secondCurrency {
+    width: 40%;
+}
+
+#convertDiv {
+    width: 20%;
+    text-align: center;
+    position: relative;
+}
+
+#convert {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    color: #00509d;
+}
+
+#convert:hover {
+    cursor: pointer;
+}
+
 .container {
     position: relative;
-    width: 200px;
+    width: 100%;
+    padding: 0;
 }
 
 .input-field {
-    width: 150px;
+    width: 100%;
+}
+
+.value-field {
+    margin: 0;
+    height: 70px;
+    font-size: 2.5em;
+    padding: 40px 20px;
+    border-radius: 10px 10px 0 0;
+}
+
+.currency-field {
+    padding: 20px 20px;
+    margin: 0;
+    height: 45px;
+    font-size: 1em;
+    font-weight: 400;
+    color: #555;
+    border-radius: 0 0 10px 10px;
+    border-top: 0;
 }
 
 .list-container {
     width: 100%;
-    height: 150px;
+    max-height: 250px;
     overflow-y: auto;
     position: absolute;
+    border: 1px solid #ddd;
     top: 100%;
     left: 0;
     margin: 0;
@@ -23,23 +129,85 @@
 .currency-list {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
 
 .currency-list li {
     font-size: .8em;
-    padding: 10px 5px;
+    padding: 20px 20px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 100;
 }
 
 .currency-list li:hover {
-    background-color: lightblue;
+    background-color: #00509d;
+    color: #fff;
     cursor: pointer;
 }
 
 .active {
-    background-color: lightblue;
+    background-color: #00509d;
+    color: #fff;
 }
 
-.row {
-    display: flex;
-    width: 20vw;
+.error-info {
+    font-weight: 300;
+    color: tomato;
+}
+
+
+/** RWD STYLES */
+
+@media (min-width: 992px) and (max-width: 1200px) {
+    #mainBox {
+        width: 75%;
+        padding: 5%;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    #mainBox {
+        width: 90%;
+        padding: 10%;
+    }
+}
+
+@media (max-width: 767px) {
+    #mainBox {
+        width: 90%;
+        padding: 10%;
+    }
+
+    h1 {
+        font-size: 3em;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    #baseCurrency, #secondCurrency {
+        width: 100%;
+    }
+    
+    #convertDiv {
+        width: 100%;
+        text-align: center;
+        position: relative;
+        height: auto;
+        min-height: 10vh;
+    }
+
+    #convert {
+        font-size: 3em;
+    }
+
+    #currOne {
+        margin-bottom: 0;
+    }
+
+    .list-container {
+        z-index: 999;
+    }
 }

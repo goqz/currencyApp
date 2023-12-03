@@ -2,43 +2,51 @@
 <html lang="pl">
   <head>
     <meta charset="utf-8">
-    <title>title</title>
+    <title>Konwerter walut</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-	<script src="https://kit.fontawesome.com/a33abd3291.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/a33abd3291.js" crossorigin="anonymous"></script>
 </head>
   <body>
-    <h1>Obiekty</h1>
-
-    <p class="error" id="errorInfo"></p>
-    <div class="row">
-        <div class="container">
-            <input type="number" placeholder="0.00" id="currOneValue" class="input-field">
-        </div>
-        <div class="container" id="currOneContainer">
-            <input class="input-field" id="currOne" type="text" value="Polski złoty (PLN)">
-            <div class="list-container" id="currList">
-                <ul class="currency-list" id="currencyList"></ul>
+    <div id="topSlide">
+        <h1>Konwerter walut</h1>
+    </div>
+    <div id="mainBox">
+        <div class="row" id="converterBox">
+            <div id="baseCurrency">
+                <div class="container">
+                    <input type="number" placeholder="0.00" id="currOneValue" class="input-field value-field">
+                </div>
+                <div class="container" id="currOneContainer">
+                    <input class="input-field currency-field" id="currOne" type="text" value="Polski złoty (PLN)">
+                    <div class="list-container" id="currList">
+                        <ul class="currency-list" id="currencyList"></ul>
+                    </div>
+                    <input type="hidden" value="PLN" id="currOneHidden">
+                </div>
             </div>
-            <input type="hidden" value="PLN" id="currOneHidden">
-        </div>
-        <div class="container">
-            <input id="convert" class="convert" value="->" type="submit">
-        </div>
-        <div class="container">
-            <input type="number" placeholder="0.00" id="currTwoValue" class="input-field">
-        </div>
-        <div class="container" id="currTwoContainer">
-            <input class="input-field" id="currTwo" type="text" value="Funt Brytyjski (GBP)">
-            <div class="list-container" id="currListTwo">
-                <ul class="currency-list" id="currencyListTwo"></ul>
+            <div id="convertDiv">
+                <i class="fa-solid fa-circle-right fa-2xl" id="convert"></i>
             </div>
-            <input type="hidden" value="GBP" id="currTwoHidden">
+            <div id="secondCurrency">
+                <div class="container">
+                    <input type="number" placeholder="0.00" id="currTwoValue" class="input-field value-field">
+                </div>
+                <div class="container" id="currTwoContainer">
+                    <input class="input-field currency-field" id="currTwo" type="text" value="Funt Brytyjski (GBP)">
+                    <div class="list-container" id="currListTwo">
+                        <ul class="currency-list" id="currencyListTwo"></ul>
+                    </div>
+                    <input type="hidden" value="GBP" id="currTwoHidden">
+                </div>
+            </div>
         </div>
+        <p class="error" id="errorInfo"></p>
     </div>
 
 
