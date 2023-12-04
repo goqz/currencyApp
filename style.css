@@ -159,6 +159,11 @@ input:focus {
     color: #555;
     border-radius: 0 0 10px 10px;
     border-top: 0;
+    background-image: url('img/arrow.png');
+    background-position: right center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    cursor: pointer;
 }
 
 .list-container {
@@ -335,7 +340,7 @@ tr:not(:first-child):hover {
         text-align: center;
         position: relative;
         height: auto;
-        min-height: 10vh;
+        min-height: 15vh;
     }
 
     #convert {

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="pl">
   <head>
-    <meta charset="utf-8">
-    <title>Konwerter walut</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <title>Konwerter walut</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,7 +33,8 @@
                         <input type="number" placeholder="0.00" id="currOneValue" class="input-field value-field">
                     </div>
                     <div class="container" id="currOneContainer">
-                        <input class="input-field currency-field" id="currOne" type="text" placeholder="Polski złoty (PLN)">
+                        <input class="input-field currency-field" id="currOne" type="text" autocomplete="off" placeholder="Polski złoty (PLN)">
+
                         <div class="list-container" id="currList">
                             <ul class="currency-list" id="currencyList"></ul>
                         </div>
@@ -47,30 +49,12 @@
                         <input type="number" placeholder="0.00" id="currTwoValue" class="input-field value-field">
                     </div>
                     <div class="container" id="currTwoContainer">
-                        <input class="input-field currency-field" id="currTwo" type="text" placeholder="Funt Brytyjski (GBP)">
+                        <input class="input-field currency-field" id="currTwo" type="text" autocomplete="off" placeholder="Funt Brytyjski (GBP)">
                         <div class="list-container" id="currListTwo">
                             <ul class="currency-list" id="currencyListTwo"></ul>
                         </div>
                         <input type="hidden" value="GBP" id="currTwoHidden">
                     </div>
-                </div>
-            </div>
-            
-            <div class="row hidden" id="tableBox">
-                <div id="baseCurrencyTable" class="curr-container">
-                    <div class="container">
-                        <input type="number" placeholder="0.00" id="tableValue" class="input-field value-field">
-                    </div>
-                    <div class="container" id="tableCurrContainer">
-                        <input class="input-field currency-field" id="tableCurr" type="text" placeholder="Polski złoty (PLN)">
-                        <div class="list-container" id="currListTableContainer">
-                            <ul class="currency-list" id="currencyListTable"></ul>
-                        </div>
-                        <input type="hidden" value="PLN" id="tableCurrHidden">
-                    </div>
-                </div>
-                <div id="tablePushDiv" class="push-div">
-                    <i class="fa-solid fa-circle-right fa-2xl push-button" id="tablePush"></i>
                 </div>
             </div>
             <table id="tableCurrency" class="table-container hidden">

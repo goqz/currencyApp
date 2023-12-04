@@ -18,6 +18,7 @@ const currencyList = document.querySelector('#currencyList')
 const currencyListTwo = document.querySelector('#currencyListTwo')
 const currencyListContainer = document.querySelector('#currList')
 const currencyListTwoContainer = document.querySelector('#currListTwo')
+const secondCurrencyBox = document.querySelector('#secondCurrency')
 const errorInfo = document.querySelector('#errorInfo')
 
 const table = document.querySelector('#tableCurrency')
@@ -112,7 +113,6 @@ const createCurrencyList = (listElement) => {
 
 createCurrencyList(currencyList)
 createCurrencyList(currencyListTwo)
-createCurrencyList(currencyListTable)
 
 function isCurrencySymbol(zmienna) {
     const regex = /^[A-Z]{3}$/;
@@ -266,19 +266,15 @@ currTwo.addEventListener('input', (e) => searchInList(e, currencyListTwo))
 currOne.addEventListener('keyup', (e) => handleKeyPress(e, currencyList, currOne, currOneHidden))
 currTwo.addEventListener('keyup', (e) => handleKeyPress(e, currencyListTwo, currTwo, currTwoHidden))
 
-tableCurr.addEventListener('focus', () => showCurrencyList(currListTableCont, tableCurr))
-tableCurr.addEventListener('blur', () => hideCurrencyList(currListTableCont))
-tableCurr.addEventListener('input', (e) => searchInList(e, currencyListTable))
-tableCurr.addEventListener('keyup', (e) => handleKeyPress(e, currencyListTable, tableCurr, tableCurrHidden))
-
 currencyList.addEventListener('click', (e) => chooseCurrency(e, currencyListContainer, currOne, currOneHidden))
-currencyListTwo.addEventListener('click', (e) => chooseCurrency(e, currencyListTwoContainer, currTwo, currTwoHidden))
-currencyListTable.addEventListener('click', (e) => chooseCurrency(e, currListTableCont, tableCurr, tableCurrHidden))
+currencyListTwo.addEventListener('click', (e) => {
+    chooseCurrency(e, currencyListTwoContainer, currTwo, currTwoHidden)
+    getRates(currOneHidden.value, currTwoHidden.value, currOneValue.value)
+})
 
-tablePush.addEventListener('click', () => getTable(tableCurrHidden.value, tableValue.value))
+convert.addEventListener('click', () => getTable(currOneHidden.value, currOneValue.value))
 
 currOneValue.addEventListener('keyup', enterCheck)
-tableValue.addEventListener('keyup', enterCheck)
 
 tabOne.addEventListener('click', () => {
     if(tabOne.classList.contains('active-tab')) {
@@ -286,10 +282,8 @@ tabOne.addEventListener('click', () => {
     } else {
         tabTwo.classList.remove('active-tab')
         tabOne.classList.add('active-tab')
-        mainBox.classList.remove('hidden')
-        mainBox.classList.add('block-active')
-        tableBox.classList.add('hidden')
-        tableBox.classList.remove('block-active')
+        secondCurrencyBox.classList.remove('hidden')
+        secondCurrencyBox.classList.add('table-active')
         table.classList.add('hidden')
         table.classList.remove('table-active')
     }
@@ -300,10 +294,8 @@ tabTwo.addEventListener('click', () => {
     } else {
         tabTwo.classList.add('active-tab')
         tabOne.classList.remove('active-tab')
-        mainBox.classList.add('hidden')
-        mainBox.classList.remove('block-active')
-        tableBox.classList.remove('hidden')
-        tableBox.classList.add('block-active')
+        secondCurrencyBox.classList.add('hidden')
+        secondCurrencyBox.classList.remove('table-active')
         table.classList.remove('hidden')
         table.classList.add('table-active')
     }
