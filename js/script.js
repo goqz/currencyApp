@@ -251,7 +251,8 @@ const getTable = (cOne, vOne) => {
 // Working after pressing enter while in first currency input
 const enterCheck = (e) => {
     if(e.key === 'Enter') {
-        getRates()
+        getRates(currOneHidden.value, currTwoHidden.value, currOneValue.value)
+        getTable(currOneHidden.value, currOneValue.value)
     }
 }
 
@@ -266,7 +267,11 @@ currTwo.addEventListener('input', (e) => searchInList(e, currencyListTwo))
 currOne.addEventListener('keyup', (e) => handleKeyPress(e, currencyList, currOne, currOneHidden))
 currTwo.addEventListener('keyup', (e) => handleKeyPress(e, currencyListTwo, currTwo, currTwoHidden))
 
-currencyList.addEventListener('click', (e) => chooseCurrency(e, currencyListContainer, currOne, currOneHidden))
+currencyList.addEventListener('click', (e) => {
+    chooseCurrency(e, currencyListContainer, currOne, currOneHidden)
+    getRates(currOneHidden.value, currTwoHidden.value, currOneValue.value)
+    getTable(currOneHidden.value, currOneValue.value)
+})
 currencyListTwo.addEventListener('click', (e) => {
     chooseCurrency(e, currencyListTwoContainer, currTwo, currTwoHidden)
     getRates(currOneHidden.value, currTwoHidden.value, currOneValue.value)
@@ -274,6 +279,10 @@ currencyListTwo.addEventListener('click', (e) => {
 
 convert.addEventListener('click', () => getTable(currOneHidden.value, currOneValue.value))
 
+currOneValue.addEventListener('keyup', () => {
+    getRates(currOneHidden.value, currTwoHidden.value, currOneValue.value)
+    getTable(currOneHidden.value, currOneValue.value)
+})
 currOneValue.addEventListener('keyup', enterCheck)
 
 tabOne.addEventListener('click', () => {
