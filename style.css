@@ -1,3 +1,8 @@
+:root {
+    --primary-color: #00509d;
+    --secondary-color: #fff;
+}
+
 * {
     box-sizing: border-box;
 }
@@ -8,15 +13,30 @@ body, html {
     margin: 0;
 }
 
+body {
+    background-color: #c3c3c3;
+    background-image: url('img/bg.jpg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
+
+
+h1 {
+    margin: 0;
+    padding-top: 10vh;
+    font-size: 4em;
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+/* Top of website */
+
 #topSlide {
     min-height: 45vh;
     width: 100%;
     margin: 0;
     padding: 0;
-    background-color: darkblue;
-    background-image: url('img/bg.jpg');
-    background-size: cover;
-    background-position: center center;
 }
 
 .row {
@@ -25,29 +45,68 @@ body, html {
     flex-direction: row;
 }
 
-#mainBox {
-    margin: -10vh auto 0 auto;
-    background-color: #fff;
+#superContainer {
+    margin: -13vh auto 0 auto;
     width: 45%;
-    padding: 75px;
-    border: 1px solid #00509d;
-    border-radius: 10px;
-    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-h1 {
-    margin: 0;
-    padding-top: 10vh;
-    font-size: 4em;
-    text-align: center;
-    color: #fff;
+#mainBox {
+    background-color: var(--secondary-color);
+    padding: 75px;
+    border: 1px solid var(--primary-color);
+    border-radius: 0 0 10px 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    border-top: 0;
 }
+
+/* Tabs to switch functions */
+
+.tab-row {
+    width: 100%;
+    padding: 0;
+}
+
+.tab {
+    padding: 10px;
+    width: 50%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    cursor: pointer;
+    text-align: center;
+}
+
+.tab:hover {
+    background-color: #001449;
+}
+
+#tabLeft {
+    border-radius: 10px 0 0 0;
+    border-left: 1px solid var(--primary-color);
+    border-top: 1px solid var(--primary-color);
+}
+
+#tabRight {
+    border-radius: 0 10px 0 0;
+    border-right: 1px solid var(--primary-color);
+    border-top: 1px solid var(--primary-color);
+}
+
+.active-tab {
+    background-color: var(--secondary-color);
+    color: #333;
+}
+
+.active-tab:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Inputs and buttons */
 
 input {
     border: 0;
     font-family: 'Roboto', sans-serif;
     font-weight: 100;
-    border: 1px solid #00509d;
+    border: 1px solid var(--primary-color);
     box-sizing: border-box;
 }
 
@@ -58,17 +117,13 @@ input:focus {
     
 }
 
-#baseCurrency, #secondCurrency {
-    width: 40%;
-}
-
-#convertDiv {
+.push-div {
     width: 20%;
     text-align: center;
     position: relative;
 }
 
-#convert {
+.push-button {
     margin: 0;
     position: absolute;
     top: 50%;
@@ -76,17 +131,11 @@ input:focus {
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     font-size: 4em;
-    color: #00509d;
+    color: var(--primary-color);
 }
 
-#convert:hover {
+.push-button:hover {
     cursor: pointer;
-}
-
-.container {
-    position: relative;
-    width: 100%;
-    padding: 0;
 }
 
 .input-field {
@@ -123,7 +172,7 @@ input:focus {
     margin: 0;
     padding: 0;
     display: none;
-    background-color: #fff;
+    background-color: var(--secondary-color);
 }
 
 .currency-list {
@@ -140,14 +189,28 @@ input:focus {
 }
 
 .currency-list li:hover {
-    background-color: #00509d;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
     cursor: pointer;
 }
 
+/* Generals */
+
+.container {
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.curr-container {
+    width: 40%;
+    border-radius: 10px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
 .active {
-    background-color: #00509d;
-    color: #fff;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
 }
 
 .error-info {
@@ -155,11 +218,65 @@ input:focus {
     color: tomato;
 }
 
+/* Second tab table styling */
+
+.table-container {
+    width: 100%;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    margin-top: 50px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.table-container th {
+    color: var(--primary-color)
+}
+
+.table-container td, .table-container th {
+    padding: 20px;
+}
+
+.currency-symbol {
+    width: 20%;
+}
+
+.currency-name {
+    width: 50%;
+}
+
+.currency-value {
+    width: 30%;
+}
+
+.currency-row {
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.block-active {
+    display: flex;
+}
+
+.table-active {
+    display: inline-table;
+}
+
+.second-row {
+    background-color: #f3f3f3;
+}
+
+tr:not(:first-child):hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
 
 /** RWD STYLES */
 
 @media (min-width: 992px) and (max-width: 1200px) {
-    #mainBox {
+    #superContainer {
         width: 75%;
         padding: 5%;
     }
@@ -167,17 +284,22 @@ input:focus {
 
 
 @media (min-width: 768px) and (max-width: 991px) {
-    #mainBox {
+    #superContainer {
         width: 90%;
         padding: 10%;
     }
 }
 
 @media (max-width: 767px) {
-    #mainBox {
+    #superContainer {
         width: 90%;
+        padding: 0;
+    }
+
+    #mainBox {
         padding: 10%;
     }
+    
 
     h1 {
         font-size: 3em;
@@ -185,6 +307,23 @@ input:focus {
 
     .row {
         flex-direction: column;
+    }
+
+    .tab-row {
+        flex-direction: row;
+    }
+
+    #tableBox {
+        flex-direction: row;
+        width: auto;
+    }
+
+    #baseCurrencyTable {
+        width: 70%;
+    }
+
+    #tablePushDiv {
+        width: 30%;
     }
 
     #baseCurrency, #secondCurrency {
@@ -207,7 +346,21 @@ input:focus {
         margin-bottom: 0;
     }
 
+    #tableCurrency {
+        max-width: 100%;
+        margin: 5vh 0 0 0;
+        padding: 0;
+    }
+
     .list-container {
         z-index: 999;
+    }
+
+    .table-container td, .table-container th {
+        padding: 5px;  /* lub dowolna wartość, która nie jest zbyt duża */
+    }
+
+    .currency-symbol, .currency-name, .currency-value {
+        width: auto;  /* lub użyj procentów */
     }
 }
